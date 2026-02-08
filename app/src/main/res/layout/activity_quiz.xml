@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="@drawable/bg_quiz_gradient">
+
+    <!-- Quiz container: visible during quiz -->
+    <LinearLayout
+        android:id="@+id/quiz_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center">
+
+        <!-- Top bar: question counter only -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end|center_vertical"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/question_counter_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1/6"
+                android:textColor="@color/text_secondary"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Card-style container for the question text -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_question_card"
+            android:padding="24dp"
+            android:orientation="vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/question_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <!-- ANSWERED label -->
+        <TextView
+            android:id="@+id/answered_label_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ANSWERED"
+            android:textColor="@color/primary_green"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp" />
+
+        <!-- True / False buttons row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/true_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_primary_button"
+                android:text="@string/true_button"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/false_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_primary_button"
+                android:text="@string/false_button"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <!-- Cheat button -->
+        <Button
+            android:id="@+id/cheat_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_secondary_button"
+            android:text="Cheat!"
+            android:textColor="@android:color/white" />
+
+        <!-- Navigation buttons row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/prev_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/arrow_left"
+                android:contentDescription="@string/prev_button" />
+
+            <ImageButton
+                android:id="@+id/next_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/arrow_right"
+                android:contentDescription="@string/next_button" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Final score container: visible only after quiz is finished -->
+    <LinearLayout
+        android:id="@+id/score_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/final_score_label_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FINAL SCORE"
+            android:textColor="@color/text_secondary"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/final_score_value_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0/0"
+            android:textColor="@color/primary_green"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp" />
+
+        <Button
+            android:id="@+id/try_again_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_primary_button"
+            android:text="TRY AGAIN"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</LinearLayout>
