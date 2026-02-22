@@ -1,8 +1,13 @@
 package com.example.geoquiz
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.view.ViewAnimationUtils
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.ComponentActivity
@@ -35,6 +40,7 @@ class CheatActivity : ComponentActivity() {
             }
             answerTextView.setText(answerTextResId)
             setResult(Activity.RESULT_OK, Intent().putExtra(EXTRA_ANSWER_SHOWN, true))
+            showAnswerButton.visibility = View.INVISIBLE
         }
 
         showAnswerButton.setOnClickListener {
@@ -47,6 +53,24 @@ class CheatActivity : ComponentActivity() {
 
             didShowAnswer = true
             setResult(Activity.RESULT_OK, Intent().putExtra(EXTRA_ANSWER_SHOWN, true))
+
+            // Chapter 6: circular reveal on API 21+; direct hide on older APIs
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                val cx = showAnswerButton.width / 2
+                val cy = showAnswerButton.height / 2
+                val radius = showAnswerButton.width.toFloat()
+                val anim = ViewAnimationUtils.createCircularReveal(
+                    showAnswerButton, cx, cy, radius, 0f
+                )
+                anim.addListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
+                        showAnswerButton.visibility = View.INVISIBLE
+                    }
+                })
+                anim.start()
+            } else {
+                showAnswerButton.visibility = View.INVISIBLE
+            }
         }
     }
 
